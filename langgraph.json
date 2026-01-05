@@ -1,0 +1,12 @@
+{
+  "python_version": "3.11",
+  "dependencies": [
+    "."
+  ],
+  "graphs": {
+    "sr_agent": "codegen:build_graph",
+    "inquira": "inquira_agent:build_graph",
+    "pefi": "parallel_execution_flow_important:build_graph"
+  },
+  "env": ".env"
+}
