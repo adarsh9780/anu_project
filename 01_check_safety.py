@@ -54,4 +54,4 @@ if __name__ == "__main__":
     marks = random.randint(0, 100)
     print(f"Marks: {marks}")
     result = graph.invoke({"marks": marks})
-    print(f"Safety Check Result: {result['message']}")
+    print(f"Result: {result['messages']}")
