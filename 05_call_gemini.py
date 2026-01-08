@@ -1,9 +1,6 @@
 import os
 from google import genai
-from pathlib import Path
 from dotenv import load_dotenv
-from fastapi import HTTPException
-from pydantic import BaseModel, Field
 
 load_dotenv()
 
