@@ -1,5 +1,4 @@
 import os
-from langchain_google_genai import ChatGoogleGenerativeAI
 from dotenv import load_dotenv
 from typing import TypedDict, Annotated
 from langgraph.graph import END, START, StateGraph
@@ -8,14 +7,15 @@ from langchain_core.messages import AnyMessage, HumanMessage, AIMessage
 from langgraph.graph.message import add_messages
 from langgraph.checkpoint.sqlite import SqliteSaver
 import sqlite3
+from langchain.chat_models import init_chat_model
 
 load_dotenv()
 api_key = os.environ["GOOGLE_API_KEY"]
 
 model = "gemini-2.5-flash-lite"
 
-client = ChatGoogleGenerativeAI(
-    model=model,
+client = init_chat_model(
+    model="google_genai:gemini-2.5-flash-lite",  # or gpt-4.1, claude-sonnet-4-5-20250929
     api_key=api_key,
     temperature=0.7,  # Gemini 3.0+ defaults to 1.0
     max_tokens=None,
