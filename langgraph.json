@@ -4,7 +4,7 @@
     "."
   ],
   "graphs": {
-    "g1": "01_check_safety:build_graph"
+    "echo": "main:build_graph"
   },
   "env": ".env"
 }

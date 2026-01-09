@@ -1,58 +1,73 @@
-from typing import TypedDict
+import os
+from google import genai
+from dotenv import load_dotenv
+from typing import TypedDict, Annotated
 from langgraph.graph import END, START, StateGraph
 from langgraph.graph.state import CompiledStateGraph, Checkpointer
+from langchain_core.messages import AnyMessage, HumanMessage, AIMessage
+from langgraph.graph.message import add_messages
+from langgraph.checkpoint.sqlite import SqliteSaver
+import sqlite3
 
-import random
+load_dotenv()
+api_key = os.environ["GOOGLE_API_KEY"]
+client = genai.Client(api_key=api_key)
 
-
-class State(TypedDict, total=False):
-    marks: int
-    is_safe: bool
-    messages: str
-
-
-# Nodes Defintion
-def check_safety(state: State) -> State:
-    if state.get("marks", 0) >= 50:
-        return {"is_safe": True}
-    return {"is_safe": False}
+model = "gemini-2.5-flash-lite"
 
 
-def safe_node(state: State) -> State:
-    return {"messages": "You passed the test"}
+def chat(user_query: list[str] | str) -> str | None:
+    response = client.models.generate_content(
+        model=model,
+        contents=user_query,
+        config={
+            "response_mime_type": "text/plain",
+        },
+    )
+    return response.text
 
 
-def unsafe_node(state: State) -> State:
-    return {"messages": "You failed the test"}
+class State(TypedDict):
+    messages: Annotated[list[AnyMessage], add_messages]
 
 
-# routers function
-def check_safety_router(state: State) -> str:
-    if state.get("is_safe"):
-        return "anu"
-    return "adarsh"
+def echo(state: State) -> State:
+    contents = []
+    for msg in state["messages"]:
+        role = "user" if isinstance(msg, HumanMessage) else "model"
+        text_content = ""
+        # handle both string and list content types via content_blocks
+        for block in msg.content_blocks:
+            if isinstance(block, str):
+                text_content += block
+            elif isinstance(block, dict):
+                text_content += block.get("text", "")
+
+        contents.append({"role": role, "parts": [{"text": text_content}]})
+
+    response = chat(contents)
+    return {"messages": [AIMessage(content=response)]}
 
 
-builder = StateGraph(State)
+def build_graph(checkpointer: Checkpointer | None = None) -> CompiledStateGraph:
+    builder = StateGraph(State)
+    builder.add_node("echo", echo)
+    builder.add_edge(START, "echo")
+    builder.add_edge("echo", END)
 
-# add nodes
-builder.add_node("check_safety", check_safety)
-builder.add_node("safe_node", safe_node)
-builder.add_node("unsafe_node", unsafe_node)
+    return builder.compile(checkpointer=checkpointer)
 
-# connect nodes
-builder.add_edge(START, "check_safety")
-builder.add_conditional_edges(
-    "check_safety", check_safety_router, {"anu": "safe_node", "adarsh": "unsafe_node"}
-)
-builder.add_edge("safe_node", END)
-builder.add_edge("unsafe_node", END)
 
-graph = builder.compile()
-
-marks = random.randint(0, 100)
-print(f"Marks: {marks}")
-result = graph.invoke({"marks": marks})
-
-print(f"State: {result}")
-print(f"Result: {result['messages']}")
+if __name__ == "__main__":
+    # memory=MemorySaver()
+    conn = sqlite3.connect("Chat_echo.db", check_same_thread=False)
+    memory = SqliteSaver(conn)
+    config = {"configurable": {"thread_id": "OMOMOM"}}
+    graph = build_graph(checkpointer=memory)
+    while True:
+        msg: str = input("User: ")
+        if msg == "bye":
+            print("Echo:bye!")
+            break
+        result = graph.invoke({"messages": [HumanMessage(content=msg)]}, config=config)
+        print("Echo:", result["messages"][-1].content)
