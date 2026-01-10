@@ -25,7 +25,7 @@ client = init_chat_model(
 )
 
 
-def chat(user_query: list[AnyMessage] | str) -> AIMessage:
+def chat(user_query: list[AnyMessage] | str) -> AnyMessage:
     response = client.invoke(user_query)
     return response
 
@@ -36,7 +36,7 @@ class State(TypedDict):
 
 def echo(state: State) -> State:
     response = chat(state["messages"])
-    return {"messages": [AIMessage(content=response.text)]}
+    return {"messages": [response]}
 
 
 def build_graph(checkpointer: Checkpointer | None = None) -> CompiledStateGraph:
