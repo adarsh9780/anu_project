@@ -24,7 +24,7 @@ client = init_chat_model(
 model_with_tools = client.bind_tools(tools)
 
 
-def chat(user_query: str) -> str:
+def chat(user_query: str):
     """Chat with tool execution support."""
     messages = [HumanMessage(content=user_query)]
 
@@ -56,11 +56,6 @@ def chat(user_query: str) -> str:
     # Second LLM call - uses tool results to form final answer
     final_response = model_with_tools.invoke(messages)
     return final_response.content
-
-
-def chat(user_query: list[AnyMessage] | str) -> AIMessage:
-    response = model_with_tools.invoke(user_query)
-    return response
 
 
 if __name__ == "__main__":

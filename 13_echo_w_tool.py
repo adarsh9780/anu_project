@@ -4,12 +4,13 @@ from typing import Annotated, TypedDict
 
 from dotenv import load_dotenv
 from langchain.chat_models import init_chat_model
-from langchain_core.messages import AIMessage, AnyMessage, HumanMessage
+from langchain_core.messages import AnyMessage, HumanMessage
 from langgraph.checkpoint.sqlite import SqliteSaver
-from langgraph.graph import END, START, StateGraph
+from langgraph.graph import START, StateGraph
 from langgraph.graph.message import add_messages
 from langgraph.graph.state import Checkpointer, CompiledStateGraph
 from langgraph.prebuilt import ToolNode, tools_condition
+from langchain_core.runnables import RunnableConfig
 
 from tools import get_current_datetime, get_system_info, list_files, read_file
 
@@ -63,7 +64,7 @@ if __name__ == "__main__":
     # memory=MemorySaver()
     conn = sqlite3.connect("chat_echo.db", check_same_thread=False)
     memory = SqliteSaver(conn)
-    config = {"configurable": {"thread_id": "OMOMOM"}}
+    config: RunnableConfig = {"configurable": {"thread_id": "OMOMOM"}}
     graph = build_graph(checkpointer=memory)
     while True:
         msg: str = input("User: ")
