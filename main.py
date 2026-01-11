@@ -7,7 +7,7 @@ from langchain.chat_models import init_chat_model
 from langchain_core.messages import AnyMessage, HumanMessage, AIMessage
 from langgraph.checkpoint.sqlite import SqliteSaver
 from langgraph.graph import START, StateGraph
-from langgraph.graph.message import add_messages
+from langgraph.graph.message import add_messages, RemoveMessage
 from langgraph.graph.state import Checkpointer, CompiledStateGraph
 from langgraph.prebuilt import ToolNode, tools_condition
 from langchain_core.runnables import RunnableConfig
@@ -38,13 +38,31 @@ def chat(user_query: list[AnyMessage] | str) -> AnyMessage:
     return response
 
 
-class State(TypedDict):
+class State(TypedDict, total=False):
     messages: Annotated[list[AnyMessage], add_messages]
+    summary: str
 
 
 def echo(state: State) -> State:
-    response = chat(state["messages"])
+    response = chat(state.get("messages", []))
     return {"messages": [response]}
+
+
+def summarize(state: State) -> State:
+    messages = state.get("messages", [])
+    delete_messages = []
+    if len(messages) > 10:
+        # delete the first 10 messages
+        delete_messages = [RemoveMessage(id=m.id) for m in messages[:10]]
+
+    prompt = f"""
+    Summarize the following conversation. Make sure redundancy is removed.
+    {messages}
+    """
+    response = chat(prompt)
+    summary = response.content
+
+    return {"messages": [response] + delete_messages, "summary": summary}
 
 
 def build_graph(checkpointer: Checkpointer | None = None) -> CompiledStateGraph:
