@@ -69,7 +69,7 @@ if __name__ == "__main__":
     while True:
         msg: str = input("User: ")
         if msg == "bye":
-            print("Echo:bye!")
+            print("Echo: bye!")
             break
         # current: invoke waits for the graph to finish and then returns the final result
         # result = graph.invoke({"messages": [HumanMessage(content=msg)]}, config=config)
@@ -87,7 +87,7 @@ if __name__ == "__main__":
         #         print("Updates: ", updates.get("messages", []))
         #         print("\n")
 
-        print("\n--- AI IS THINKING ---\n")
+        # print("\n--- AI IS THINKING ---\n")
 
         for mode, chunk in graph.stream(
             {"messages": [HumanMessage(content=msg)]},
