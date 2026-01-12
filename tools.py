@@ -1,4 +1,5 @@
 from langchain.tools import tool
+from tavily import TavilyClient
 
 
 @tool
@@ -122,3 +123,16 @@ def get_system_info() -> str:
     info.append(f"🏠 Home Directory: {os.path.expanduser('~')}")
 
     return "\n".join(info)
+
+
+@tool
+def search_web(query: str) -> dict:
+    """
+    Use this tool to search the web for information.
+    """
+    import os
+
+    api_key = os.environ["TAVILY_API_KEY"]
+    client = TavilyClient(api_key=api_key)
+    response = client.search(query=query, search_depth="advanced")
+    return response
