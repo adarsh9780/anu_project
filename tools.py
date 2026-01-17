@@ -1,5 +1,6 @@
 from langchain.tools import tool
 from tavily import TavilyClient
+import json
 
 
 @tool
@@ -136,3 +137,10 @@ def search_web(query: str) -> dict:
     client = TavilyClient(api_key=api_key)
     response = client.search(query=query, search_depth="advanced")
     return response
+
+
+@tool
+def update_user_preferences(likes: list[str] = [], dislikes: list[str] = []):
+    """..."""
+    prefs = {"likes": likes, "dislikes": dislikes}
+    return f"PREF_UPDATE:{json.dumps(prefs)}"
