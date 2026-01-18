@@ -2136,8 +2136,8 @@
       "type": "text",
       "x": 5547.406609667285,
       "y": 2517.34538748296,
-      "width": 1198.791370959923,
-      "height": 313.89881066693323,
+      "width": 1046.3010699442925,
+      "height": 342.4350661821089,
       "angle": 0,
       "strokeColor": "#2f9e44",
       "backgroundColor": "transparent",
@@ -2151,8 +2151,8 @@
       "index": "b6J",
       "roundness": null,
       "seed": 947818849,
-      "version": 1595,
-      "versionNonce": 804226543,
+      "version": 1643,
+      "versionNonce": 390766656,
       "isDeleted": false,
       "boundElements": [
         {
@@ -2160,10 +2160,10 @@
           "type": "arrow"
         }
       ],
-      "updated": 1768506131490,
+      "updated": 1768676208612,
       "link": null,
       "locked": false,
-      "text": "STRATEGIES FOR RETRIEVAL\n\n1. Naive Strategy - get top 10 chunks based purely on the metric (cosine similarity etc.)\n\nThis approach could not be sufficient. For example: \"The chief risk officer was suspended\" might get lower\nscore against \"CEO got suspended\"\n\n2. Run a keyword search (BM25) and vector search + instead of top 10, may be search for top 50. This\nshould be followed by Re-ranking to get the final top 5, which will be sent to LLM\n\nthis will for sure increase the latency as Re-ranking is computationally expensive operation",
+      "text": "STRATEGIES FOR RETRIEVAL\n\n1. Naive Strategy - get top 10 chunks based purely on the metric (cosine similarity etc.)\n\nThis approach could not be sufficient. For example: \"The chief risk officer was suspended\"\nmight get lower score against \"CEO got suspended\"\n\n2. Run a keyword search (BM25) and vector search + instead of top 10, may be search for\ntop 50. This should be followed by Re-ranking to get the final top 5, which will be sent to\nLLM\n\nthis will for sure increase the latency as Re-ranking is computationally expensive operation",
       "fontSize": 22.8290044121406,
       "fontFamily": 5,
       "textAlign": "left",
@@ -2260,7 +2260,7 @@
       "id": "ZJKD8IWAQVB7Zi7rrb5eM",
       "type": "line",
       "x": -793.5611805585822,
-      "y": 1796.70793860413,
+      "y": 1790.70793860413,
       "width": 3536.5291468304063,
       "height": 10.673790389815085,
       "angle": 0,
@@ -2278,11 +2278,11 @@
         "type": 2
       },
       "seed": 8829167,
-      "version": 634,
-      "versionNonce": 1908549199,
+      "version": 640,
+      "versionNonce": 1551675456,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1768498835412,
+      "updated": 1768676135024,
       "link": null,
       "locked": false,
       "points": [
@@ -2540,11 +2540,16 @@
       "index": "b6X",
       "roundness": null,
       "seed": 124672353,
-      "version": 14,
-      "versionNonce": 271494049,
+      "version": 15,
+      "versionNonce": 1057266624,
       "isDeleted": false,
-      "boundElements": [],
-      "updated": 1768499022598,
+      "boundElements": [
+        {
+          "id": "ssYudMPwQ636e2vL1Z7Rc",
+          "type": "arrow"
+        }
+      ],
+      "updated": 1768676110268,
       "link": null,
       "locked": false,
       "text": "Final Result",
@@ -2602,10 +2607,10 @@
     {
       "id": "6fvrZ0o4oWAXlv-Rp0AM7",
       "type": "arrow",
-      "x": 5111.353456775996,
-      "y": 2673.255128855606,
-      "width": 425.05315289128885,
-      "height": 3.892520158064599,
+      "x": 5100.353456775996,
+      "y": 2675.828688619736,
+      "width": 447.05315289128794,
+      "height": 5.8225590051506515,
       "angle": 0,
       "strokeColor": "#2f9e44",
       "backgroundColor": "transparent",
@@ -2621,11 +2626,11 @@
         "type": 2
       },
       "seed": 1373823809,
-      "version": 164,
-      "versionNonce": 453439503,
+      "version": 212,
+      "versionNonce": 1301059648,
       "isDeleted": false,
       "boundElements": [],
-      "updated": 1768506131492,
+      "updated": 1768676208612,
       "link": null,
       "locked": false,
       "points": [
@@ -2634,8 +2639,8 @@
           0
         ],
         [
-          425.05315289128885,
-          -3.892520158064599
+          447.05315289128794,
+          5.8225590051506515
         ]
       ],
       "startBinding": {
@@ -4022,10 +4027,10 @@
     {
       "id": "ssYudMPwQ636e2vL1Z7Rc",
       "type": "arrow",
-      "x": 6609.4426723931065,
-      "y": 3226.0624007197694,
-      "width": 11.216989709427253,
-      "height": 492.7710447157124,
+      "x": 6614.747918302275,
+      "y": 3209.5486481554817,
+      "width": 5.911743800258591,
+      "height": 509.28479728,
       "angle": 0,
       "strokeColor": "#2f9e44",
       "backgroundColor": "transparent",
@@ -4041,11 +4046,11 @@
         "type": 2
       },
       "seed": 200078589,
-      "version": 205,
-      "versionNonce": 1045818621,
+      "version": 257,
+      "versionNonce": 1179988928,
       "isDeleted": false,
-      "boundElements": null,
-      "updated": 1768672103299,
+      "boundElements": [],
+      "updated": 1768676111252,
       "link": null,
       "locked": false,
       "points": [
@@ -4054,16 +4059,20 @@
           0
         ],
         [
-          11.216989709427253,
-          492.7710447157124
+          5.911743800258591,
+          509.28479728
         ]
       ],
       "lastCommittedPoint": null,
-      "startBinding": null,
+      "startBinding": {
+        "elementId": "X8FkTuHrDCFqKKM8zcDfe",
+        "focus": -0.10300723621691031,
+        "gap": 14
+      },
       "endBinding": {
         "elementId": "CcuzG5VXnfLzCjHgKyW8Q",
-        "focus": -0.019280550848832723,
-        "gap": 4.1913970487639745
+        "focus": -0.03537735245114292,
+        "gap": 3.4352551973543086
       },
       "startArrowhead": null,
       "endArrowhead": "arrow",
@@ -4107,10 +4116,10 @@
     {
       "id": "DwoZW48Xsv1ehkhPrHOoP",
       "type": "text",
-      "x": 6106.393913333134,
+      "x": 6090.255506876058,
       "y": 3767.5846613535555,
-      "width": 1082.551980126534,
-      "height": 1610,
+      "width": 1127.5502773755757,
+      "height": 1621.4139614345424,
       "angle": 0,
       "strokeColor": "#2f9e44",
       "backgroundColor": "transparent",
@@ -4124,20 +4133,20 @@
       "index": "b7L",
       "roundness": null,
       "seed": 1647915453,
-      "version": 1815,
-      "versionNonce": 1404963571,
+      "version": 1845,
+      "versionNonce": 2062482368,
       "isDeleted": false,
-      "boundElements": null,
-      "updated": 1768672103873,
+      "boundElements": [],
+      "updated": 1768676097827,
       "link": null,
       "locked": false,
-      "text": "RAGAS - RAG Assessment\n\nThis is a framework to measure the performance of RAG System. We use\nanother LLM model as a judge. Preferrably, a different and more powerful\nmodel.\n\nThere are 3 metrics which are calculated:\n1. Faithfulness (groundedness)\n2. Answer Relevancy\n3. Context Precision\n\nFAITHFULNESS\n\nStep 1: From the final answer, LLM-as-a-judge (LaaJ) extracts all the facts\nwhich are claimed. \n\nExample: Let's say this is the output of the RAG pipeline:\n\"The sun is a red giant star\". \n\nThere are two facts claimed: \n    Fact 1:\"Sun is a star\"\n    Fact 2: \"It is Red Giant Type\"\n\nStep 2: The LaaJ checks the \"retreived\" chunks and verifies if the facts are\npresent in the chunks\n\nLet's say in the retrieved chunks only Fact 1 was present\n\ntherefore: Number of facts present/Facts claimed = 1/2 = 0.5 = 50%\n\n\nANSWER RELEVANCY\n\nStep 1: LaaJ takes the generated answer, and generates several \"POSSIBLE\nQUESTIONS\" which will the same answer as \"Generated Answer\"\n\nStep 2: Cosine Similarity is calculated between the \"POSSIBLE QUESTIONS\"\nand \"Actual Question\"\n\nIf the score is low, overall score is dropped\n\n\nCONTEXT PRECISION\n\nLet's say there were 5 chunks which were retreived. A higher relevancy score\nwould be applied if the answer is present in the top chunks vs bottom chunks.",
-      "fontSize": 28,
+      "text": "RAGAS - RAG Assessment\n\nThis is a framework to measure the performance of RAG System. We use\nanother LLM model as a judge. Preferrably, a different and more powerful model.\n\nThere are 3 metrics which are calculated:\n1. Faithfulness (groundedness)\n2. Answer Relevancy\n3. Context Precision\n\nFAITHFULNESS\n\nStep 1: From the final answer, LLM-as-a-judge (LaaJ) extracts all the facts\nwhich are claimed. \n\nExample: Let's say this is the output of the RAG pipeline:\n\"The sun is a red giant star\". \n\nThere are two facts claimed: \n    Fact 1: \"Sun is a star\"\n    Fact 2: \"It is Red Giant Type\"\n\nStep 2: The LaaJ checks the \"retreived\" chunks and verifies if the facts are\npresent in the chunks\n\nLet's say in the retrieved chunks only Fact 1 was present\n\ntherefore: Number of facts present/Facts claimed = 1/2 = 0.5 = 50%\n\n\nANSWER RELEVANCY\n\nStep 1: LaaJ takes the generated answer, and generates several \"POSSIBLE\nQUESTIONS\" which will the same answer as \"Generated Answer\"\n\nStep 2: Cosine Similarity is calculated between the \"POSSIBLE QUESTIONS\"\nand \"Actual Question\"\n\nIf the score is low, overall score is dropped\n\n\nCONTEXT PRECISION\n\nLet's say there were 5 chunks which were retreived. A higher relevancy score\nwould be applied if the answer is present in the top chunks vs bottom chunks.",
+      "fontSize": 28.82513709216964,
       "fontFamily": 5,
       "textAlign": "left",
       "verticalAlign": "top",
       "containerId": null,
-      "originalText": "RAGAS - RAG Assessment\n\nThis is a framework to measure the performance of RAG System. We use another LLM model as a judge. Preferrably, a different and more powerful model.\n\nThere are 3 metrics which are calculated:\n1. Faithfulness (groundedness)\n2. Answer Relevancy\n3. Context Precision\n\nFAITHFULNESS\n\nStep 1: From the final answer, LLM-as-a-judge (LaaJ) extracts all the facts which are claimed. \n\nExample: Let's say this is the output of the RAG pipeline:\n\"The sun is a red giant star\". \n\nThere are two facts claimed: \n    Fact 1:\"Sun is a star\"\n    Fact 2: \"It is Red Giant Type\"\n\nStep 2: The LaaJ checks the \"retreived\" chunks and verifies if the facts are present in the chunks\n\nLet's say in the retrieved chunks only Fact 1 was present\n\ntherefore: Number of facts present/Facts claimed = 1/2 = 0.5 = 50%\n\n\nANSWER RELEVANCY\n\nStep 1: LaaJ takes the generated answer, and generates several \"POSSIBLE QUESTIONS\" which will the same answer as \"Generated Answer\"\n\nStep 2: Cosine Similarity is calculated between the \"POSSIBLE QUESTIONS\" and \"Actual Question\"\n\nIf the score is low, overall score is dropped\n\n\nCONTEXT PRECISION\n\nLet's say there were 5 chunks which were retreived. A higher relevancy score would be applied if the answer is present in the top chunks vs bottom chunks.",
+      "originalText": "RAGAS - RAG Assessment\n\nThis is a framework to measure the performance of RAG System. We use another LLM model as a judge. Preferrably, a different and more powerful model.\n\nThere are 3 metrics which are calculated:\n1. Faithfulness (groundedness)\n2. Answer Relevancy\n3. Context Precision\n\nFAITHFULNESS\n\nStep 1: From the final answer, LLM-as-a-judge (LaaJ) extracts all the facts which are claimed. \n\nExample: Let's say this is the output of the RAG pipeline:\n\"The sun is a red giant star\". \n\nThere are two facts claimed: \n    Fact 1: \"Sun is a star\"\n    Fact 2: \"It is Red Giant Type\"\n\nStep 2: The LaaJ checks the \"retreived\" chunks and verifies if the facts are present in the chunks\n\nLet's say in the retrieved chunks only Fact 1 was present\n\ntherefore: Number of facts present/Facts claimed = 1/2 = 0.5 = 50%\n\n\nANSWER RELEVANCY\n\nStep 1: LaaJ takes the generated answer, and generates several \"POSSIBLE QUESTIONS\" which will the same answer as \"Generated Answer\"\n\nStep 2: Cosine Similarity is calculated between the \"POSSIBLE QUESTIONS\" and \"Actual Question\"\n\nIf the score is low, overall score is dropped\n\n\nCONTEXT PRECISION\n\nLet's say there were 5 chunks which were retreived. A higher relevancy score would be applied if the answer is present in the top chunks vs bottom chunks.",
       "autoResize": false,
       "lineHeight": 1.25
     }
